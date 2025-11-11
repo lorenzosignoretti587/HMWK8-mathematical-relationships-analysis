@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Relationships: Bernoulli & Combinatorics</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configure Tailwind for a nice look (Emerald Theme) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-green': '#059669', /* Emerald-600 */
+                        'primary-light': '#10b981', /* Emerald-500 */
+                        'accent-dark': '#1f2937', /* Gray-800 */
+                        'bg-light': '#f0fdf4', /* Emerald-50 */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- MathJax Integration for rendering LaTeX formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- MathJax Configuration to enable standard LaTeX delimiters -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+
+    <style>
+        /* Custom styles for formula boxes */
+        .formula-box {
+            background-color: var(--tw-bg-light); /* Emerald-50 */
+            border-left: 4px solid var(--tw-border-opacity, 1);
+            border-color: #059669; /* Emerald-600 */
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        /* Style for the table in the differences section */
+        #differences-table th {
+            background-color: #10b981; /* Emerald-500 */
+            color: white;
+        }
+        #differences-table td {
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans min-h-screen p-4 sm:p-8">
+
+    <header class="bg-primary-green text-white p-8 rounded-xl shadow-2xl mb-10">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl font-extrabold mb-2">Mathematical Relationships Analysis</h1>
+            <p class="text-xl text-emerald-200">Bernoulli Trials, Random Walk, and Combinatorial Links</p>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto space-y-10">
+        
+        <!-- Section 1: Fundamental Analogy -->
+        <section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg border-t-4 border-primary-green">
+            <h2 class="text-2xl font-bold text-primary-green mb-4">1. Fundamental Analogy and Relationship</h2>
+            <p class="text-gray-700 mb-6">Both assignments—the one on the <strong>Law of Large Numbers (LLN)</strong> and the current <strong>Score Simulation (Random Walk/Binomial Distribution)</strong>—are built upon a sequence of independent and identically distributed (i.i.d.) <strong>Bernoulli Trials</strong>.</p>
+            
+            <!-- Similarities -->
+            <h3 class="text-xl font-semibold text-accent-dark mt-6 mb-3 border-b pb-2">Similarities: The Mathematical DNA</h3>
+            <ul class="list-disc ml-6 text-gray-700 space-y-2">
+                <li>
+                    <strong>The Bernoulli Trial:</strong> The fundamental unit of both models is a single trial with only two outcomes:
+                    <ul class="list-circle ml-6 mt-1 text-sm">
+                        <li><strong>Success</strong> (Probability $p$).</li>
+                        <li><strong>Failure</strong> (Probability $q = 1 - p$).</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Independence:</strong> In both the LLN average calculation and the Random Walk simulation, each step (or each trial) is <strong>independent</strong> of the previous ones.
+                </li>
+                <li>
+                    <strong>Central Limit Theorem (CLT):</strong> Both distributions (the average in LLN and the sum in Binomial) converge to the <strong>Normal (Gaussian) Distribution</strong> as the number of trials ($N$) increases.
+                </li>
+            </ul>
+
+            <!-- Differences -->
+            <h3 class="text-xl font-semibold text-accent-dark mt-8 mb-3 border-b pb-2">Differences: The Statistical Focus</h3>
+            <div class="overflow-x-auto rounded-lg shadow-md">
+                <table class="min-w-full text-sm text-left text-gray-600" id="differences-table">
+                    <thead>
+                        <tr class="text-xs uppercase leading-normal">
+                            <th scope="col" class="px-6 py-3">Characteristic</th>
+                            <th scope="col" class="px-6 py-3">LLN (Previous Assignment)</th>
+                            <th scope="col" class="px-6 py-3">Random Walk (Current Assignment)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-100">
+                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">Variable Focus</th>
+                            <td class="px-6 py-4">The <strong>Average</strong> number of successes after $N$ trials.</td>
+                            <td class="px-6 py-4">The <strong>Sum</strong> or <strong>Net Score</strong> after $N$ steps.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-100">
+                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">Convergence</th>
+                            <td class="px-6 py-4">The sample mean $\bar{X}_N$ converges to the expected value $\mu = p$.</td>
+                            <td class="px-6 py-4">The distribution of the sum converges to the <strong>Normal Distribution</strong>.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-100">
+                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">Nature</th>
+                            <td class="px-6 py-4"><strong>Average Convergence</strong> process.</td>
+                            <td class="px-6 py-4"><strong>Total Distribution</strong> process (Random Walk).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 2: Combinatorial Properties -->
+        <section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg border-t-4 border-primary-light">
+            <h2 class="text-2xl font-bold text-primary-green mb-4">2. Combinatorial Properties: Binomial, Pascal, and Coefficients</h2>
+            <p class="text-gray-700 mb-6">The <strong>Binomial Distribution</strong> is the direct link between the Random Walk and Combinatorics. It models the probability of obtaining exactly $k$ successes in $N$ trials.</p>
+            
+            <h3 class="text-xl font-semibold text-accent-dark mt-6 mb-3 border-b pb-2">Binomial Coefficients and Pascal's Triangle (Tartaglia's Triangle)</h3>
+            <ul class="list-disc ml-6 text-gray-700 space-y-3">
+                <li>
+                    <strong>Binomial Coefficients</strong> $\binom{N}{k}$: These coefficients represent the <strong>number of ways</strong> to obtain $k$ successes out of a total of $N$ weeks. In the Random Walk, $\binom{N}{k}$ is the number of <strong>unique paths</strong> that lead to the final endpoint after $N$ steps.
+                    <div class="formula-box text-primary-green font-mono text-lg">
+                        $$\binom{N}{k} = \frac{N!}{k!(N-k)!}$$
+                    </div>
+                </li>
+                <li>
+                    <strong>Pascal's Triangle:</strong> This geometric arrangement beautifully illustrates the Binomial Coefficients. 
+                    <ul class="list-circle ml-6 mt-2 text-sm">
+                        <li>Each number in the triangle is the sum of the two numbers directly above it (the recursive property: $\binom{N}{k} = \binom{N-1}{k-1} + \binom{N-1}{k}$).</li>
+                        <li>This recursive relationship perfectly models the <strong>Random Walk</strong>: To reach a final state (a coefficient), you must have come from one of two possible preceding states in the previous step (week). The value of the coefficient gives the total count of distinct paths leading to that point.</li>
+                        <li>The $N$-th row of the triangle gives the maximum frequency of results for $N$ trials when the probability is symmetric ($p=0.5$).</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h3 class="text-xl font-semibold text-accent-dark mt-8 mb-3 border-b pb-2">The Binomial Expansion</h3>
+            <p class="text-gray-700">The complete Binomial probability formula is derived from the <strong>Binomial Expansion Theorem</strong>, showing the probability distribution of the final score (where $k$ is the number of successes):</p>
+            <div class="formula-box text-primary-green font-mono text-xl">
+                $$(p + q)^N = \sum_{k=0}^N \binom{N}{k} p^k q^{N-k}$$
+            </div>
+        </section>
+
+        <!-- Section 3: Fibonacci Sequence -->
+        <section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg border-t-4 border-primary-green">
+            <h2 class="text-2xl font-bold text-primary-green mb-4">3. Relationships with the Fibonacci Sequence</h2>
+            <p class="text-gray-700 mb-6">The <strong>Fibonacci Sequence</strong> ($F_n$: $1, 1, 2, 3, 5, 8, 13, \dots$) is closely related to Pascal's Triangle, and thus indirectly to the Random Walk.</p>
+            
+            <h3 class="text-xl font-semibold text-accent-dark mt-6 mb-3 border-b pb-2">Key Relationship: Shallow Diagonals</h3>
+            <p class="text-gray-700">The Fibonacci numbers are generated by summing the elements along the "shallow diagonals" of Pascal's Triangle. This reveals a deep connection between sequential counting problems (Fibonacci) and combinatorial choices (Binomial/Pascal).</p>
+            <div class="formula-box text-primary-green font-mono text-xl">
+                $$\binom{n}{0} + \binom{n-1}{1} + \binom{n-2}{2} + \dots = F_{n+1}$$
+            </div>
+            <p class="mt-4 text-gray-700 italic text-sm">In summary, the Bernoulli trial is the root, the Binomial Distribution is the structure (Pascal's Triangle), and Fibonacci is an elegant, recursive feature hidden within that structure!</p>
+        </section>
+
+    </main>
+    
+    <!-- Footer with attribution -->
+    <footer>
+        <p>&copy; 2025 Homework Completed by Signoretti Lorenzo Mattia 2050463</p>
+    </footer>
+
+</body>
+</html>
